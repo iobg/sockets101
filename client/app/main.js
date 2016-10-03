@@ -1,5 +1,10 @@
 'use strict'
 
+const socket=io();
+socket.on('connect',()=>{console.log('Socket connected',socket)})
+socket.on('disconnect',()=>{console.log('Socket Disconnected')})
+
+
 angular
   .module('mean101', ['ngRoute'])
   .config(($routeProvider, $locationProvider) => {
