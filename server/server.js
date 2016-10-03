@@ -33,6 +33,10 @@ app.get('/api/messages', (req, res, err) =>
 app.post('/api/messages', (req, res, err) =>
   Message
     .create(req.body)
+    .then(msg=>{
+      io.emit('newMessage',msg)
+      return msg
+    })
     .then(msg => res.status(201).json(msg))
     .catch(err)
 )
