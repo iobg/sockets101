@@ -37,11 +37,16 @@ angular
         content: $scope.content,
       }
 
-      // $http
-      //   .post('/api/messages', msg)
-      //   .then(() => $scope.messages.push(msg))
-      //   .catch(console.error)
-      socket.emit('postMessage', msg)
+     
+      if(socket.connected){
+         return socket.emit('postMessage', msg)
+      }
+
+       $http
+        .post('/api/messages', msg)
+        .then(() => $scope.messages.push(msg))
+        .catch(console.error)
+     
     }
 
     $http
